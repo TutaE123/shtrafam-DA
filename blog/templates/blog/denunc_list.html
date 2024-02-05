@@ -1,0 +1,17 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+{% for denunc in denuncs %}
+<div class="post">
+    <div class="date">
+        <p>Опубликовано: {{ denunc.published_date }}</p>
+    </div>
+    <h1><a href="{% url 'denunc_detail' pk=denunc.pk %}">{{ denunc.title }}</a></h1>
+    <p>{{ denunc.offenses|linebreaksbr }}</p>
+
+    <img src= "{ denunc.image }" >
+    <hr />
+
+</div>
+{% endfor %}
+{% endblock %}

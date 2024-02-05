@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="post">
+        {% if denunc.published_date %}
+            <div class="date">
+                {{ denunc.published_date }}
+            </div>
+        {% endif %}
+        <h1>{{ denunc.title }}</h1>        
+        <p>Донос на: {{ denunc.offender|linebreaksbr }}</p>
+        <p>Что сделал: {{ denunc.offenses|linebreaksbr }}</p>
+        <p>Когда: {{ denunc.created_date }}</p>
+        <img src="{{ denunc.image }}">
+        <p>Статус: {{ denunc.status }}</p>
+        <p>Доносчик: {{ denunc.author }}</p>
+        {% if user.is_authenticated %}
+            <a class="btn btn-default" href="{% url 'denunc_edit' pk=denunc.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        {% endif %}
+    </div>
+{% endblock %}
